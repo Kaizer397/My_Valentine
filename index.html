@@ -66,9 +66,10 @@
         <p id="personal-note" class="hidden text-pink-700 mt-6 font-medium italic opacity-0 transition-opacity duration-1000"></p>
     </div>
 
-    <audio id="success-music">
-        <source src="https://files.catbox.moe/bne3bq.mp3/mpeg">
+    <audio id="success-music" preload="auto" crossorigin="anonymous">
+    <source src="https://files.catbox.moe/bne3bq.mp3" type="audio/mpeg">
     </audio>
+    
 
     <script>
         const noBtn = document.getElementById('no-button');
@@ -105,6 +106,14 @@
 
         // Success Logic
         yesBtn.addEventListener('click', () => {
+            const music = document.getElementById('success-music');
+    
+    // Attempt to play immediately on click
+    music.play().then(() => {
+        console.log("Playback started successfully");
+    }).catch(e => {
+        console.error("Playback failed:", e);
+    });
             document.getElementById('success-music').play();
             mainGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp4ZzBqZzR4eXp4eXp4eXp4eXp4eXp4eXp4eXp4eXp4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TdfyKrN7HGTIY/giphy.gif";
             question.innerHTML = "Best decision ever! ❤️";
@@ -127,4 +136,5 @@
     </script>
 </body>
 </html>
+
 
